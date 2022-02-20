@@ -1,0 +1,43 @@
+import random as rnd
+from Ficha import *
+
+class Tablero:
+    casillas=20
+    jugador1=0
+    jugador2=0
+   
+    def __init__(self, casillas, jugador1,jugador2):
+        self.casillas=casillas
+        self.jugador1=jugador1
+        self.jugador2=jugador2
+    
+    def juego(self):
+        while (self.jugador1<=self.casillas and self.jugador2<=self.casillas):
+        # Lanzamiendo Jugador1
+            ficha1= int(rnd.random()*6)+1
+            ficha2= int(rnd.random()*6)+1
+            if (self.jugador1==0 and ficha1==ficha2):
+                self.jugador1= 1
+            if (self.jugador1>0):
+                self.jugador1 = self.jugador1 + ficha1 + ficha2
+            if (self.jugador1==2 or self.jugador1==17 or self.jugador1==30 or self.jugador1==42):
+                ficha1 = int(rnd.random()*6)+1
+                ficha2 = int(rnd.random()*6)+1
+                self.jugador1= self.jugador1+ ficha1 + ficha2
+
+            # Lanzamiendo Jugador2
+            ficha1 = int(rnd.random()*6)+1
+            ficha2 = int(rnd.random()*6)+1
+            if (self.jugador2==0 and ficha1==ficha2):
+                self.jugador2= 1
+            if (self.jugador2>0):
+                self.jugador2 = self.jugador2 + ficha1 + ficha2
+            if (self.jugador2==2 or self.jugador2==17 or self.jugador2==30 or self.jugador2==42):
+                ficha1 = int(rnd.random()*6)+1
+                ficha2 = int(rnd.random()*6)+1
+                self.jugador2= self.jugador2 + ficha1 + ficha2
+                
+        if (self.jugador1>self.jugador2):
+            gana = 1
+        else:
+            gana = 2
