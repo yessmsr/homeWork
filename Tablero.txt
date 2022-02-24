@@ -1,43 +1,29 @@
-import random as rnd
+from Dado import *
 from Ficha import *
+
 
 class Tablero:
     casillas=20
-    jugador1=0
-    jugador2=0
-   
-    def __init__(self, casillas, jugador1,jugador2):
-        self.casillas=casillas
-        self.jugador1=jugador1
-        self.jugador2=jugador2
+    fichas=[]
+
+    ##################
+    posicion=Ficha(0)
+    ficha1=Ficha("Verde")
+    ficha2=Ficha("Azul")
+    def __init__(self, casillas, fichas):
+        self.casillas=20
+        self.fichas=fichas
     
     def juego(self):
-        while (self.jugador1<=self.casillas and self.jugador2<=self.casillas):
+        casilla=self.casillas
+        while (self.ficha1<=casilla and self.ficha2<=casilla):
+            avanza=self.posicion.avanzar()
         # Lanzamiendo Jugador1
-            ficha1= int(rnd.random()*6)+1
-            ficha2= int(rnd.random()*6)+1
-            if (self.jugador1==0 and ficha1==ficha2):
-                self.jugador1= 1
-            if (self.jugador1>0):
-                self.jugador1 = self.jugador1 + ficha1 + ficha2
-            if (self.jugador1==2 or self.jugador1==17 or self.jugador1==30 or self.jugador1==42):
-                ficha1 = int(rnd.random()*6)+1
-                ficha2 = int(rnd.random()*6)+1
-                self.jugador1= self.jugador1+ ficha1 + ficha2
+            self.ficha1=avanza
+            self.ficha2=avanza
+            if (self.ficha1>=casilla):
+                print("Ha ganado la ficha verde")
 
-            # Lanzamiendo Jugador2
-            ficha1 = int(rnd.random()*6)+1
-            ficha2 = int(rnd.random()*6)+1
-            if (self.jugador2==0 and ficha1==ficha2):
-                self.jugador2= 1
-            if (self.jugador2>0):
-                self.jugador2 = self.jugador2 + ficha1 + ficha2
-            if (self.jugador2==2 or self.jugador2==17 or self.jugador2==30 or self.jugador2==42):
-                ficha1 = int(rnd.random()*6)+1
-                ficha2 = int(rnd.random()*6)+1
-                self.jugador2= self.jugador2 + ficha1 + ficha2
-                
-        if (self.jugador1>self.jugador2):
-            gana = 1
-        else:
-            gana = 2
+        # Lanzamiendo Jugador2
+            if (self.ficha2>=casilla):
+                print("Ha ganado la ficha Azul")
